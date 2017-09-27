@@ -1,0 +1,61 @@
+﻿
+@using DonationApplication.data
+@using DonationApplication.web.Models
+@model CategoriesViewModel
+
+<h2>Categories</h2>
+<a class="btn btn-primary" id="add-cat-btn">Add Category</a>
+<table class="table table-hover table-striped">
+    <tr>
+        <th>Category Name</th>
+        <th>Action</th>
+    </tr>
+    @foreach(Category cat in Model.Categories)
+    {
+        <tr>
+            @*<td><input type="text" class="cat-txt-bx" id="cat-txt-@cat.Id" hidden value="@cat.Name"><span class="cat-name">@cat.Name</span></td>
+            <td><a class="btn btn-warning edit-cat-btn">Edit</a>
+            <a class="btn btn-info update-cat-btn" data-id="@cat.Id" style="display:none;">Update</a>*@
+            <td><input type="text" class="cat-txt-bx" id="cat-txt-@cat.Id" data-id="@cat.Id" hidden value="@cat.Name"><span class="cat-name" id="cat-name-@cat.Id">@cat.Name</span></td>
+            <td>
+            <a class="btn btn-warning edit-cat-btn"id="edit-cat-btn-@cat.Id">Edit</a>
+            <a class="btn btn-info update-cat-btn" id="update-cat-btn-@cat.Id" data-id="@cat.Id" style="display:none;">Update</a>
+                @if (cat.Applications == null)
+                {
+                    <a class="btn btn-danger">Delete</a>
+                }
+            </td>
+        </tr>
+ 
+    }
+</table>
+
+<div class="modal fade new-cat" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">New Category</h4>
+            </div>
+            <form method="POST" action="/admin/addcategory">
+                <div class="modal-body">
+                    <div class="well">
+                        <div class="form-group">
+                            <label>Category</label>
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Category Name">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <input class="btn btn-primary" name="commit" type="submit" value="Save">
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+@section scripts
+{
+<script src="~/Scripts/categories.js"></script>
+    }

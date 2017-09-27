@@ -1,0 +1,13 @@
+﻿@using DonationApplication.data
+@using DonationApplication.web.Models
+@model DashboardViewModel
+
+<div class="row" style="margin-top:50px;">
+
+    <div class="col-md-offset-3 col-md-6 well">
+        <a class="btn btn-primary" href="/account/logout/">Log out</a>
+        <h2>Welcome back to the Admin Dashboard, @Model.User.FirstName @Model.User.LastName</h2>
+        <a class="btn btn-primary" href="/admin/pending/">Pending Applications</a>
+        <a class="btn btn-primary" href="/admin/categories/">Manage Categories</a>
+    </div>
+</div>
